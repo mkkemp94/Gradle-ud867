@@ -9,16 +9,20 @@ from the scope in which they're declared.
 
 task groovy {}
 
-def foo = "One million dollars"
+def foo = "One gajillion dollars"
 def myClosure = {
-    println "Hello from a closure"
-    println "The value of foo is $foo"
+    println "Michael says: Hello from a closure"
+    println "Michael: Foo is $foo"
+	println ""
 }
 
 myClosure()
-def bar = myClosure
-def baz = bar
-baz()
+
+def imafunction = myClosure
+def imavariable = imafunction
+
+imafunction()
+imavariable()
 
 /*
 
@@ -26,7 +30,7 @@ Closures have a different notation for arguments.
 
 */
 
-def doubleIt = { x -> x + x}
+def doubleIt = { x -> x + x }
 
 /*
 
@@ -36,13 +40,24 @@ twice.
 
 */
 
-def applyTwice(func, arg){
-    func(func(arg))
+def applyOnce(func, arg){
+    func(arg)
 }
 
-foo = 5
+def applyTwice(func, arg) {
+	func(func(arg))
+}
+
+foo = 10
+def fooDoubledOnce = applyOnce(doubleIt, foo)
 def fooDoubledTwice = applyTwice(doubleIt, foo)
+
+println ""
+
+println "Applying doubleIt once to $foo equals $fooDoubledOnce"
 println "Applying doubleIt twice to $foo equals $fooDoubledTwice"
+
+println ""
 
 /*
 
@@ -57,7 +72,7 @@ declare a list using a literal.
 
 */
 
-def myList = ["Gradle", "Groovy", "Android"]
+def myList = ["A", "B", "C"]
 
 /*
 
@@ -65,8 +80,12 @@ We can execute a closure for each item in the list.
 
 */
 
-def printItem = {item -> println "List item: $item"}
+def printItem = { 
+	x -> println "List item $x"
+}
+
 myList.each(printItem)
+println ""
 
 /*
 
@@ -76,7 +95,11 @@ argument, by default that argument is just called `it`.
 
 */
 
+myList = [1, 2, 3]
+myList.each { println "Printing item: $it" }
 myList.each{println "Compactly printing each list item: $it"}
+println ""
+
 
 /*
 
@@ -87,15 +110,18 @@ getters and setters for class properties.
 */
 
 class GroovyGreeter {
-    String greeting = "Default greeting"
-    def printGreeting(){println "Greeting: $greeting"}
+	String greeting = "Hiya"
+    def printGreeting() {
+		println "Greeting is $greeting"
+	}
 }
 
 def myGroovyGreeter = new GroovyGreeter()
 
 myGroovyGreeter.printGreeting()
-myGroovyGreeter.greeting = "My custom greeting"
+myGroovyGreeter.greeting = "YOOOO"
 myGroovyGreeter.printGreeting()
+println ""
 
 /*
 
@@ -107,12 +133,13 @@ a closure that will access the property and method of our GroovyGreeter class.
 */
 
 def greetingClosure = {
-    greeting = "Setting the greeting from a closure"
+    greeting = "Last one!"
     printGreeting()
 }
 
 // greetingClosure() // This doesn't work, because `greeting` isn't defined
-greetingClosure.delegate = myGroovyGreeter
+def aGreeter = new GroovyGreeter()
+greetingClosure.delegate = aGreeter
 greetingClosure() // This works as `greeting` is a property of the delegate
 
 /*
