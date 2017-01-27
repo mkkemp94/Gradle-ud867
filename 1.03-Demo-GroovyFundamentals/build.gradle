@@ -24,7 +24,7 @@ selecting View > Syntax > Open all with current extension as... > Groovy
 
 task groovy {}
 
-println "Hello Groovy!"
+println "HELLO"
 
 /*
 
@@ -35,12 +35,21 @@ well as access the standard library. Let's make a Java class.
 
 class JavaGreeter {
     public void sayHello() {
-        System.out.println("Hello Java!");
+        System.out.print("Hello Java! and ");
     }
+}
+
+class Michael {
+	public void sayMichael() {
+		System.out.println("Hi Michael!");
+	}
 }
 
 JavaGreeter greeter = new JavaGreeter()
 greeter.sayHello()
+
+Michael michael = new Michael();
+michael.sayMichael()
 
 /*
 
@@ -50,6 +59,8 @@ That also means you don't need to declare the types of variables.
 */
 
 def foo = 6.5
+
+foo = "YO"
 
 /*
 
@@ -67,7 +78,7 @@ We can also surround any Groovy code with a dollar sign and curly braces.
 
 */
 
-println "Let's do some math. 5 + 6 = ${5 + 6}"
+println "Let's do some math. 5 + 10 = ${5+10}"
 
 /*
 
@@ -76,9 +87,15 @@ type of a variable using `foo.class`.
 
 */
 
+/*
 println "foo is of type: ${foo.class} and has value: $foo"
 foo = "a string"
 println "foo is now of type: ${foo.class} and has value: $foo"
+*/
+
+println "foo is of the type: [[ ${foo.class} ]] and has value: $foo"
+foo = 300
+println "now foo is of type: [[ ${ foo.class } ]] and has the new value $foo"
 
 /*
 
@@ -93,8 +110,11 @@ domain specific language. Let's define a function.
 
 */
 
-def doubleIt(n) {
-    n + n // Note we don't need a return statement
+def tripleIt(x) {
+	println ""
+	println "Tripling..."
+    x + x + x // Note we don't need a return statement
+	//x + x
 }
 
 /*
@@ -106,7 +126,7 @@ the block is returned. Let's give it a try.
 */
 
 foo = 5
-println "doubleIt($foo) = ${doubleIt(foo)}"
+println "tripleIt($foo) = ${ tripleIt(foo) }"
 
 /*
 
@@ -116,7 +136,8 @@ strings, we can call our function with a string as well.
 */
 
 foo = "foobar"
-println "doubleIt($foo) = ${doubleIt(foo)}"
+println "tripleIt($foo) = ${ tripleIt(foo) }"
+println ""
 
 /*
 
@@ -132,12 +153,12 @@ def noArgs() {
 
 def oneArg(x) {
     println "Called the 1 arg function with $x"
-    x
+    x // return x
 }
 
 def twoArgs(x, y) {
     println "Called the 2 arg function with $x and $y"
-    x + y
+    x + y // return x + y
 }
 
 oneArg 500 // Look, Ma! No parentheses!
