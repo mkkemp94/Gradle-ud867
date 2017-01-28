@@ -20,7 +20,7 @@ directory.
 
 task copyImages(type: Copy) {
     from 'images'
-    into 'build'
+    into 'animals!'
 }
 
 
@@ -38,7 +38,7 @@ pattern.
 task copyJpegs(type: Copy) {
     from 'images'
     include '*.jpg'
-    into 'build'
+    into 'someJpgs'
 }
 
 /*
@@ -67,7 +67,7 @@ task copyImageFolders(type: Copy) {
         into 'gif'
     }
 
-    into 'build'
+    into 'separateTypes'
 }
 
 /*
@@ -83,8 +83,8 @@ Gradle Project interface provides a convenience method for creating files.
 */
 
 task zipImages(type: Zip) {
-    baseName = 'images'
-    destinationDir = file('build')
+    baseName = 'myZip'
+    destinationDir = file('thisHasAZip')
     from 'images'
 }
 
@@ -98,17 +98,17 @@ archive name and destination.
 */
 
 task zipImageFolders(type: Zip) {
-    baseName = 'images'
-    destinationDir = file('build')
+    baseName = 'thisFolderHasGroupedZipFolders'
+    destinationDir = file('outsideFolder')
 
     from('images') {
         include '*.jpg'
-        into 'jpeg'
+        into 'thisHasJpegs'
     }
 
     from('images') {
         include '*.gif'
-        into 'gif'
+        into 'thisHasGifs'
     }
 }
 
@@ -121,5 +121,5 @@ in our project. Let's create a task that deletes the "build" folder.
 */
 
 task deleteBuild(type: Delete) {
-    delete 'build'
+    delete 'thisHasAZip'
 }
