@@ -54,6 +54,11 @@ task execute(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task executeProgram(type: JavaExec) {
+	main = "com.udacity.gradle.Person"
+	classpath = sourceSets.main.runtimeClasspath
+}
+
 /*
 
 The `main` property tells the JavaExec task the path of your main class, and

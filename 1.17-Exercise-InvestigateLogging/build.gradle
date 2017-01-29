@@ -38,7 +38,7 @@ class HelloTask extends DefaultTask {
     @TaskAction
     void doAction() {
 		logger.info('info')
-        logger.lifecycle('Hello World')
+        println ('Hello World')
 		logger.info('info')
 		logger.debug("Catch me if you can")
     }
