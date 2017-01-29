@@ -11,11 +11,20 @@ Exercises:
    the HelloTask at the INFO level.
 2. Execute the "hello" task with the appropriate command line options such
    that our newly added logging statements are shown in the console output.
+   
+		gradle hello -i
+	
 3. Modify the `println()` call in our task action to instead be a logging
    statement at the LIFECYCLE level.
 4. Execute the "hello" task and confirm the output.
+
+		gradle hello
+		
 5. Execute the "hello" task with the appropriate command line options such
    that the text "Hello World" is no longer written to the console output.
+   
+		gradle hello -q
+		
 6. Uncomment and run the "derpy" task below, then use "--stacktrace" to find
    the error.
 7. CHALLENGE! Log "Catch me if you can" at DEBUG level, then use grep (or
@@ -28,12 +37,19 @@ task hello(type: HelloTask)
 class HelloTask extends DefaultTask {
     @TaskAction
     void doAction() {
-        println 'Hello World'
+		logger.info('info')
+        logger.lifecycle('Hello World')
+		logger.info('info')
+		logger.debug("Catch me if you can")
     }
 }
 
 /*
 task derpy << {
-    primp "Herp de derp"
+    println "Herp de derp"
 }
 */
+
+task hello2 {
+    println "Hello World"
+}
