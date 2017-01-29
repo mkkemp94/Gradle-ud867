@@ -20,8 +20,13 @@ in the webOutputDir property via the command line).
 
 */
 
+ext {
+    bundleBaseName = 'Peace' // 4. Define extra property
+	webOutputDir = 'Land'
+}
+
 task bundleWeb(type: Zip) {
-    baseName = 'web'
+    baseName=bundleBaseName
     destinationDir = file(webOutputDir)
 
     from 'src/web'
