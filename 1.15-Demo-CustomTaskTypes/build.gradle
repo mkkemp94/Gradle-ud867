@@ -25,11 +25,13 @@ action that simply prints a string out to the console.
 
 */
 
+
 class HelloTask extends DefaultTask {
-    @TaskAction
-    void doAction() {
-        println 'Hello World'
-    }
+
+	@TaskAction
+	void doAction() {
+		println "Hey there"
+	}
 }
 
 /*
@@ -63,6 +65,15 @@ class HelloNameTask extends DefaultTask {
     }
 }
 
+class FeedMe extends DefaultTask {
+	String food
+	
+	@TaskAction
+	void doAction() {
+		println "Yay! I just ate $food"
+	}
+}
+
 /*
 
 Let's use our new configurable task to print a custom value out to the
@@ -72,6 +83,10 @@ console.
 
 task helloName(type: HelloNameTask) {
     firstName = 'Jeremy'
+}
+
+task feedIt(type: FeedMe) {
+	food = "burgers"
 }
 
 /*
