@@ -19,3 +19,23 @@ Hint: For more information on using Gradle nightly builds, check out the
 Gradle website: http://gradle.org/gradle-nightly-build/
 
 */
+
+wrapper {
+    gradleVersion = '2.14.1'
+}
+
+/*
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions-snapshots/gradle-3.4-20170106000025+0000-bin.zip
+*/
+
+/*
+projectDir {
+	gradle {
+		distributionUrl=https\://services.gradle.org/distributions-snapshots/gradle-3.5-20170130000033+0000-bin.zip
+	}
+}
+*/
